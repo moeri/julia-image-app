@@ -1,0 +1,21 @@
+@charset "UTF-8";
+body {
+    max-width: 450px;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 200%;
+    text-align: center;
+}
+img {
+    margin-top: 10px;
+}
+label {
+    display: inline-block;
+    width: 230px;
+    text-align: right;
+}
+button {
+    margin-top: 20px;
+    width: 100%;
+}
