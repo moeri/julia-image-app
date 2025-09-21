@@ -80,7 +80,7 @@ def post():
         return "error2", 400
 
     # 分割数
-    resolution = 500
+    resolution = 300
 
     # 実部と虚部の軸データ配列
     z_real = np.linspace(min_x, max_x, resolution)
@@ -92,7 +92,7 @@ def post():
     z = julia(z_real, z_imag, n_max, a, b)
 
     # 図形作成
-    plt.figure(figsize=(3, 3))  # 追加
+    plt.figure(figsize=(3, 3))
     plt.imshow(
         z,
         cmap="seismic",
