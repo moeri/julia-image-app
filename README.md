@@ -1,7 +1,7 @@
 # ジュリア集合の生成と絵画
 
 実数部最小値min_x、実数部最大値max_x、虚数部最小値min_y、虚数部最大値max_y、複素定数comp_constを入力することで、ジュリア集合を生成し絵画することができます。
-
+https://moeri.github.io/julia-image-app/
 
 # Features
 

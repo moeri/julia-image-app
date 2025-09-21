@@ -15,7 +15,7 @@ import warnings
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://moeri.github.io"])
 
 matplotlib.use("agg")
 warnings.simplefilter("ignore")
@@ -55,9 +55,6 @@ def julia(z_real, z_imag, n_max, a, b):
     # imshow()で上下逆になるので予め上下反転
     z = z[::-1]
     return z
-
-
-app = Flask(__name__)
 
 
 @app.route("/julia")
