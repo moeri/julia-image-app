@@ -65,4 +65,4 @@ warnings.simplefilter('ignore')
 # Author
 
 * 荒井 萌里
-* moeri0428.oo@icloud.com
+* moeri.arai@gmail.com
