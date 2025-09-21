@@ -12,6 +12,10 @@ from flask import Flask, render_template, request
 
 # 一部numbaのjitに対応していない部分があり、警告が表示されるため非表示
 import warnings
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 matplotlib.use("agg")
 warnings.simplefilter("ignore")

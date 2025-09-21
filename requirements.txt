@@ -3,3 +3,4 @@ matplotlib
 numpy
 numba
 gunicorn
+flask-cors
