@@ -81,7 +81,6 @@ pip install -r requirements.txt
 
 - Mac で作成・動作確認済み。Windows では未検証です。
 - ジュリア集合の実装は [watlab-blog.com/2020/06/28/julia-set/](https://watlab-blog.com/2020/06/28/julia-set/) を参考にしています。
-- numba 未対応の numpy 機能があるため、警告を非表示にしています（動作には影響ありません）。
 
 ---
 
