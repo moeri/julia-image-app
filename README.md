@@ -1,68 +1,91 @@
-# ジュリア集合の生成と絵画
+# ジュリア集合の生成と描画
 
-実数部最小値min_x、実数部最大値max_x、虚数部最小値min_y、虚数部最大値max_y、複素定数comp_constを入力することで、ジュリア集合を生成し絵画することができます。
-https://moeri.github.io/julia-image-app/
+本アプリは、実数部最小値（min_x）、実数部最大値（max_x）、虚数部最小値（min_y）、虚数部最大値（max_y）、複素定数（comp_const_x, comp_const_y）を入力することで、ジュリア集合を生成し、画像として描画します。
 
-# Features
+- フロントエンド（入力フォーム・画像表示）は [GitHub Pages](https://moeri.github.io/julia-image-app/) で公開
+- バックエンド（画像生成 API）は [Render](https://julia-image-app-1.onrender.com/) で稼働
 
-* 採用した臨界値：100
-    * 漸化式を100回計算するうちに、無限大（1垓以上）になれば発散、そうでなければ収束と定義
+---
 
-* 色付け：pythonのライブラリであるmatplotlibのcolormap "seismic"を使用
-    * n=0が濃青、50が白、100が濃赤であり、その間がグラデーションとなっております。
+## Features
 
-https://matplotlib.org/stable/tutorials/colors/colormaps.html#diverging
+- **臨界値（最大繰り返し数）**: 100
+  100 回の漸化式計算で無限大（1e20 以上）になれば発散、そうでなければ収束と判定
+- **色付け**: matplotlib の colormap "seismic"
+  n=0 が濃青、50 が白、100 が濃赤のグラデーション
+- **分割数**: 300
+  実数部・虚数部ともに指定範囲を 300 分割して計算（メモリ節約のため）
 
-* 分割数：1000
-    * 実数部、虚数部ともに、与えられた最大値と最小値の間を1000分割して計算を行います。
+---
 
+## 使い方
+
+1. [GitHub Pages のサイト](https://moeri.github.io/julia-image-app/)にアクセス
+2. 各パラメータを入力し、「生成」ボタンをクリック
+3. ジュリア集合の画像が表示されます
+
+### 推奨パラメータ例
+
+- min_x: `-1.5`
+- max_x: `1.5`
+- min_y: `-1.5`
+- max_y: `1.5`
+- comp_const_x: `-0.8`
+- comp_const_y: `0.156`
+
+---
 
 ## エラーについて
-* error1：数字以外の文字列が入力された場合（未入力含む）
-* error2：最大値と最小値の大小関係がおかしい場合
 
-どちらも400エラーを返し、エラーの内容をアラートで表示します。
+- **error1**：数字以外の文字列が入力された場合（未入力含む）→ 400 エラー
+- **error2**：最大値と最小値の大小関係が逆の場合 → 400 エラー
 
+どちらもアラートで内容を表示します。
 
-# Requirement
+---
 
-* python 3.10.10
+## Requirement
 
-*numbaがpython3.11以前にしか対応していないため*
+- Python 3.10.10
+  ※numba が Python 3.11 以前にしか対応していません
 
-ライブラリ
-* Flask 2.2.3
-* matplotlib 3.7.0
-* numba 0.56.4
-* numpy 1.23.5
+### 使用ライブラリ
 
+- Flask 2.2.3
+- Flask-CORS
+- matplotlib 3.7.0
+- numba 0.56.4
+- numpy 1.23.5
+- gunicorn
 
-# Installation
+---
+
+## Installation（ローカルで API を動かす場合）
 
 ```bash
-pip install flask
-pip install matplotlib
-pip install numpy
-pip install numba
+pip install -r requirements.txt
 ```
 
-# Note
+---
 
-* Macにて作成したため、Windowsでの動作は確認できておりません。
-* ジュリア集合の図形作成の実装に関して、以下のサイトを参考にさせていただきました。
-https://watlab-blog.com/2020/06/28/julia-set/
+## 構成
 
-### 警告の非表示について
-```app.py
-import warnings
-warnings.simplefilter('ignore')
-```
-* numbaをnumpyの計算を高速化するために使用していますが、numpyの機能の一部はnumbaに対応しておらず、API実行時ターミナルに警告表示が出ますが、動作には問題がありません。
-* 全てをnumbaに対応している形式で書いた方が速いのですが、コードが長くなってしまうこと、現在のコードでも十分な速さであることから、現在のコードを採用しました。
-* 以上のことから、警告を非表示にしております。
+- `/docs` … フロントエンド（HTML, CSS, JS）
+  GitHub Pages で公開
+- `/app.py` … バックエンド（Flask API）
+  Render でデプロイ
 
+---
 
-# Author
+## 注意
 
-* 荒井 萌里
-* moeri.arai@gmail.com
+- Mac で作成・動作確認済み。Windows では未検証です。
+- ジュリア集合の実装は [watlab-blog.com/2020/06/28/julia-set/](https://watlab-blog.com/2020/06/28/julia-set/) を参考にしています。
+- numba 未対応の numpy 機能があるため、警告を非表示にしています（動作には影響ありません）。
+
+---
+
+## Author
+
+- 荒井 萌里
+- moeri.arai@gmail.com
