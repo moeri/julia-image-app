@@ -11,18 +11,18 @@ from matplotlib.colors import Normalize
 from flask import Flask, render_template, request
 
 # 一部numbaのjitに対応していない部分があり、警告が表示されるため非表示
-import warnings
+# import warnings
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, origins=["https://moeri.github.io"])
 
 matplotlib.use("agg")
-warnings.simplefilter("ignore")
+# warnings.simplefilter("ignore")
 
 
 # ジュリア集合の計算
-@jit
+# @jit
 def julia(z_real, z_imag, n_max, a, b):
     # 実部Reと虚部Imの組み合わせを計算
     Re, Im = np.meshgrid(z_real, z_imag)
