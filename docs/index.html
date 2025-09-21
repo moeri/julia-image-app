@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <link rel="icon" href="../static/image/favicon.ico">
-  <link rel="stylesheet" href="../static/style.css">
-  <title>ジュリア集合の生成と描画</title>
-</head>
-<body>
-  <h1>ジュリア集合の生成と描画</h1>
-  
-  <form id="data">
-    <label for="min_x">実数部最小値 min_x : </label>
-    <input type="text" id="min_x" name="min_x" size="10"><br>
+  <head>
+    <link rel="icon" href="../static/image/favicon.ico" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>ジュリア集合の生成と描画</title>
+  </head>
+  <body>
+    <h1>ジュリア集合の生成と描画</h1>
 
-    <label for="max_x">実数部最大値 max_x : </label>
-    <input type="text" id="max_x" name="max_x" size="10"><br>
+    <form id="data">
+      <label for="min_x">実数部最小値 min_x : </label>
+      <input type="text" id="min_x" name="min_x" size="10" /><br />
 
-    <label for="min_y">虚数部最小値 min_y : </label>
-    <input type="text" id="min_y" name="min_y" size="10"><br>
+      <label for="max_x">実数部最大値 max_x : </label>
+      <input type="text" id="max_x" name="max_x" size="10" /><br />
 
-    <label for="max_y">虚数部最大値 max_y : </label>
-    <input type="text" id="max_y" name="max_y" size="10"><br>
+      <label for="min_y">虚数部最小値 min_y : </label>
+      <input type="text" id="min_y" name="min_y" size="10" /><br />
 
-    <label>複素定数 comp_const : </label>
-    <input type="text" id="comp_const_x" name="comp_const_x" size="4">
-    +
-    <input type="text" id="comp_const_y" name="comp_const_y" size="4">
-    i<br>
-    
-    <button type="button" onclick="get_func()">生成</button><br>
-    
-  </form>
-  
-  <div id="image_result"></div>
+      <label for="max_y">虚数部最大値 max_y : </label>
+      <input type="text" id="max_y" name="max_y" size="10" /><br />
 
-  <script src="../static/index.js"></script>
-</body>
+      <label>複素定数 comp_const : </label>
+      <input type="text" id="comp_const_x" name="comp_const_x" size="4" />
+      +
+      <input type="text" id="comp_const_y" name="comp_const_y" size="4" />
+      i<br />
+
+      <button type="button" onclick="get_func()">生成</button><br />
+    </form>
+
+    <div id="image_result"></div>
+
+    <script src="../static/index.js"></script>
+  </body>
 </html>

@@ -4,7 +4,7 @@ from numba import jit
 from io import BytesIO
 
 import matplotlib
-matplotlib.use('agg')
+
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 
@@ -12,7 +12,9 @@ from flask import Flask, render_template, request
 
 # 一部numbaのjitに対応していない部分があり、警告が表示されるため非表示
 import warnings
-warnings.simplefilter('ignore')
+
+matplotlib.use("agg")
+warnings.simplefilter("ignore")
 
 
 # ジュリア集合の計算
@@ -34,7 +36,7 @@ def julia(z_real, z_imag, n_max, a, b):
         # z0が無限大(1垓以上)になるか、最大繰り返し数になるまでループする
         while np.abs(z0) < 1e20 and not n == n_max:
             # 漸化式を計算
-            z0 = z0 ** 2 + c
+            z0 = z0**2 + c
             # 繰り返し数を増分
             n += 1
 
@@ -53,12 +55,13 @@ def julia(z_real, z_imag, n_max, a, b):
 
 app = Flask(__name__)
 
-@app.route('/julia')
+
+@app.route("/julia")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/julia/post', methods=["POST"])
+@app.route("/julia/post", methods=["POST"])
 def post():
     try:
         min_x = float(request.form["min_x"])
@@ -69,11 +72,11 @@ def post():
         b = float(request.form["comp_const_y"])
     # 数値が入力されていないエラー
     except ValueError:
-        return 'error1', 400
-    
+        return "error1", 400
+
     # 最大値が最小値よりも小さいエラー
     if min_x >= max_x or min_y >= max_y:
-        return 'error2', 400
+        return "error2", 400
 
     # 分割数
     resolution = 1000
@@ -89,16 +92,19 @@ def post():
 
     # 図形作成
     plt.figure()
-    plt.imshow(z, cmap='seismic',
-               norm=Normalize(vmin=0, vmax=n_max),
-               extent=[min_x, max_x, min_y, max_y])
+    plt.imshow(
+        z,
+        cmap="seismic",
+        norm=Normalize(vmin=0, vmax=n_max),
+        extent=[min_x, max_x, min_y, max_y],
+    )
     # 軸を消去
-    plt.axis('off')
+    plt.axis("off")
     plt.tight_layout()
 
     # png画像を保存
     buffer = BytesIO()
-    plt.savefig(buffer, format="png", bbox_inches='tight', pad_inches=0)
+    plt.savefig(buffer, format="png", bbox_inches="tight", pad_inches=0)
     buffer.seek(0)
     img = buffer.getvalue()
 
