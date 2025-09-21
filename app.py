@@ -80,7 +80,7 @@ def post():
         return "error2", 400
 
     # 分割数
-    resolution = 300
+    resolution = 500
 
     # 実部と虚部の軸データ配列
     z_real = np.linspace(min_x, max_x, resolution)
